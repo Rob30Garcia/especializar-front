@@ -20,12 +20,25 @@ function getUser(id) {
     .catch(err => console.log(err));
 }
 
-getUser(7);
+getUser(10);
 
 function addUser(newUser) {
   fetch(url, {
     method: "POST",
     body: JSON.stringify(newUser),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(response => response.json())
+    .then(data => alertApi.textContent = data)
+    .catch(err => console.log(err))
+}
+
+function updateUser(updateUser, id) {
+  fetch(`${url}/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(updateUser),
     headers: {
       "Content-Type": "application/json; charset=UTF-8"
     }
@@ -42,3 +55,11 @@ const newUser = {
 }
 
 addUser(newUser);
+
+const modifyUser = {
+  name: "Pedro Garcia",
+  avatar: "http://picsum.photos/400/200",
+  city: "São Francisco"
+}
+
+updateUser(modifyUser, 10);
