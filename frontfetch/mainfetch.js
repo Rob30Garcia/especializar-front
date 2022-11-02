@@ -7,8 +7,6 @@ function getUsers() {
     .catch(err => console.log(err))
 }
 
-getUsers();
-
 function getUser(id) {
   fetch(`${url}/${id}`)
     .then(response => response.json())
@@ -19,8 +17,6 @@ function getUser(id) {
     })
     .catch(err => console.log(err));
 }
-
-getUser(10);
 
 function addUser(newUser) {
   fetch(url, {
@@ -48,13 +44,23 @@ function updateUser(updateUser, id) {
     .catch(err => console.log(err))
 }
 
+function deleteUser(id) {
+  fetch(`${url}/${id}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(response => response.json())
+    .then(data => alertApi.textContent = data)
+    .catch(err => console.log(err))
+}
+
 const newUser = {
   name: "Robert Garcia",
   avatar: "http://picsum.photos/400/200",
   city: "Manaus"
 }
-
-addUser(newUser);
 
 const modifyUser = {
   name: "Pedro Garcia",
@@ -62,4 +68,12 @@ const modifyUser = {
   city: "São Francisco"
 }
 
+getUsers();
+
+getUser(10);
+
+addUser(newUser);
+
 updateUser(modifyUser, 10);
+
+deleteUser(11);
