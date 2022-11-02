@@ -20,4 +20,25 @@ function getUser(id) {
     .catch(err => console.log(err));
 }
 
-getUser(1);
+getUser(7);
+
+function addUser(newUser) {
+  fetch(url, {
+    method: "POST",
+    body: JSON.stringify(newUser),
+    headers: {
+      "Content-Type": "application/json; charset=UTF-8"
+    }
+  })
+    .then(response => response.json())
+    .then(data => alertApi.textContent = data)
+    .catch(err => console.log(err))
+}
+
+const newUser = {
+  name: "Robert Garcia",
+  avatar: "http://picsum.photos/400/200",
+  city: "Manaus"
+}
+
+addUser(newUser);
