@@ -8,3 +8,16 @@ function getUsers() {
 }
 
 getUsers();
+
+function getUser(id) {
+  fetch(`${url}/${id}`)
+    .then(response => response.json())
+    .then(data => {
+      username.textContent = data.name;
+      usercity.textContent = data.city;
+      useravatar.src = data.avatar;
+    })
+    .catch(err => console.log(err));
+}
+
+getUser(1);
