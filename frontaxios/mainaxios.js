@@ -39,6 +39,12 @@ function updateUser(user, id) {
     .catch(err => console.error(err))
 }
 
+function deleteUser(id) {
+  axios.delete(`${url}/${id}`)
+    .then(response => alertApi.textContent = response.data)
+    .catch(err => console.error(err))
+}
+
 const newUser = {
   name: "Robert Garcia",
   avatar: "http://picsum.photos/400/200",
@@ -58,3 +64,5 @@ getUser(3);
 addNewUser(newUser);
 
 updateUser(user, 4);
+
+deleteUser(1);
