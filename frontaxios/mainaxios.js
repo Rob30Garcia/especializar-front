@@ -7,4 +7,17 @@ function getUsers() {
     .catch(err => console.error(err))
 }
 
+function getUser(id) {
+  axios.get(`${url}/${id}`)
+    .then(response =>  response.data)
+    .then(data => {
+      userId.textContent = data.id;
+      username.textContent = data.name;
+      usercity.textContent = data.city;
+      useravatar.src = data.avatar;
+    })
+}
+
 getUsers();
+
+getUser(1);
