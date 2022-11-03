@@ -29,8 +29,24 @@ function addNewUser(newUser) {
     .catch(err => console.error(err))
 }
 
+function updateUser(user, id) {
+  axios.put(`${url}/${id}`, {
+    name: user.name,
+    avatar: user.avatar,
+    city: user.cty
+  })
+    .then(response => alertApi.textContent = response.data)
+    .catch(err => console.error(err))
+}
+
 const newUser = {
   name: "Robert Garcia",
+  avatar: "http://picsum.photos/400/200",
+  city: "London"
+}
+
+const user = {
+  name: "Pedro Garcia",
   avatar: "http://picsum.photos/400/200",
   city: "London"
 }
@@ -40,3 +56,5 @@ getUsers();
 getUser(3);
 
 addNewUser(newUser);
+
+updateUser(user, 4);
