@@ -18,6 +18,25 @@ function getUser(id) {
     })
 }
 
+function addNewUser(newUser) {
+  axios.post(url, {
+    name: newUser.name,
+    avatar: newUser.avatar,
+    city: newUser.city
+  })
+    .then(response => response.data)
+    .then(data => alertApi.textContent = data)
+    .catch(err => console.error(err))
+}
+
+const newUser = {
+  name: "Robert Garcia",
+  avatar: "http://picsum.photos/400/200",
+  city: "London"
+}
+
 getUsers();
 
-getUser(1);
+getUser(3);
+
+addNewUser(newUser);
