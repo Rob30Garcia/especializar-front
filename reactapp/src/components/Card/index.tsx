@@ -1,6 +1,6 @@
 import './style.css';
 
-interface ICardProps {
+export interface ICardProps {
   name: string;
   time: string;
 }
