@@ -3,10 +3,20 @@ import { Card, ICardProps } from '../../components/Card';
 
 import './style.css';
 
+interface IProfileResponse {
+  name: string;
+  avatar_url: string;
+}
+
+interface IUser {
+  name: string;
+  avatar: string;
+}
+
 export function Home() {
   const [studentName, setStudentName] = useState('');
   const [students, setStudent] = useState<ICardProps[]>([]);
-  const [user, setUser] = useState({ name: '', avatar: '' });
+  const [user, setUser] = useState<IUser>({} as IUser);
 
   const handleAddStudent = () => {
     const newStudent = {
@@ -24,7 +34,7 @@ export function Home() {
   useEffect(() => {
     async function fetchData() {
       const response = await fetch("https://api.github.com/users/Rob30Garcia");
-      const data = await response.json();
+      const data: IProfileResponse = await response.json();
 
       setUser({
         name: data.name,
